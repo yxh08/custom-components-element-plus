@@ -1,44 +1,163 @@
 <template>
-  <CusTable :ElTableProps="ElTableProps" :dict="dict" :tabledata="tabledata">
-    <template #operate="{ row }">
-      <el-table-column label="123" fixed="right"></el-table-column>
+  <CusTable
+    :ElTableProps="ElTableProps"
+    :dict="dict"
+    :searchMethod="searchMethod"
+    :maxHeight="200"
+    @selection-change="handleSelectionChange"
+    :selectable="handleSelectionChangeSelectable"
+  >
+    <template #operate>
+      <el-button type="primary">新增</el-button>
+      <el-button type="danger">删除</el-button>
     </template>
   </CusTable>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, h } from 'vue'
 import CusTable from '@/components/cus-table/index.vue'
-import { dict_ } from './dict'
-import { tabledata_ } from './tabledata'
+import { ElButton, ElInput } from 'element-plus'
+import type { Dict, DictItem } from '@/types/table'
+import $ from '@/api/index'
 
-const ElTableProps = {
-  // 'max-height': 500,
-  'header-row-class-name': 'header-row-test',
+const searchMethod = $.list
+
+const handleSelectionChange = val => {
+  console.log(`output->selectedList`, val)
 }
 
-const dict = ref([
+const handleSelectionChangeSelectable = row => {
+  // if (row.class_leader == '朱奕佳') {
+  //   return false
+  // }
+  return true
+}
+
+const ElTableProps: any = {
+  'max-height': 600,
+  'header-row-class-name': 'header-row-test',
+  border: true,
+  style: {
+    // height: '500px',
+    //...
+  },
+}
+
+const dict = ref<Dict>([
   {
-    prop: 'index',
-    label: '索引',
+    prop: 'class_id',
+    label: '班级ID',
+    search: () => h(ElInput, {}),
+    show: false,
+  },
+
+  {
+    prop: '',
+    label: '班级信息',
     ElTableColumnProps: {
-      width: 200,
+      align: 'center',
     },
+    children: [
+      {
+        prop: 'class_code',
+        label: '班级代码',
+        search: 'ElInput',
+        ElTableColumnProps: {
+          minWidth: 100,
+        },
+      },
+      {
+        prop: 'class_name',
+        label: '班级名称',
+        search: 'ElInput',
+      },
+    ],
+  },
+
+  {
+    prop: 'class_education',
+    label: '班级专业',
   },
   {
-    prop: 'content',
-    label: '内容',
-    formatter: () =>
-      h('img', {
-        src: 'https://picsum.photos/id/301/100/100',
-        style: { display: 'block', width: '100px', height: '100px' },
-      }),
-    ElTableColumnProps: {
-      'min-width': 500,
-    },
+    prop: 'class_plan_no',
+    label: '班级规划号',
   },
+  {
+    prop: 'class_stu_zj',
+    label: '在籍人数',
+  },
+  {
+    prop: 'class_stu_total',
+    label: '人数',
+  },
+  {
+    prop: 'class_leader',
+    label: '班主任名称',
+  },
+  {
+    prop: 'class_leader_uid',
+    label: '班主任ID',
+  },
+  {
+    prop: 'class_leader_second',
+    label: '副班主任名称',
+  },
+  {
+    prop: 'class_leader_uid_second',
+    label: '副班主任ID',
+  },
+
+  {
+    prop: 'class_classify_code',
+    label: '学生类别代码',
+  },
+  {
+    prop: 'class_classify_name',
+    label: '学生类别名称',
+  },
+  {
+    prop: 'class_status',
+    label: '班级状态',
+    formatter: (a, b, c) => (c == 1 ? '正常' : '毕业'),
+  },
+  {
+    prop: 'class_stu_by',
+    label: '毕业人数',
+  },
+  {
+    prop: 'class_is_confirm',
+    label: '是否确认',
+    formatter: (a, b, c) => (c == 1 ? '是' : '否'),
+  },
+  {
+    prop: 'class_createtime',
+    label: '创建时间',
+  },
+  {
+    prop: 'class_updatetime',
+    label: '更新时间',
+  },
+  // {
+  //   prop: '',
+  //   label: '操作',
+  //   formatter: row =>
+  //     h(
+  //       ElButton,
+  //       {
+  //         onClick: () => {
+  //           console.log(`output->row`, row)
+  //         },
+  //         type: 'primary',
+  //       },
+  //       () => '编辑',
+  //     ),
+  //   ElTableColumnProps: {
+  //     fixed: 'right',
+  //     width: 100,
+  //   },
+  // },
 ])
-const tabledata = ref(tabledata_)
 </script>
 
 <style></style>
