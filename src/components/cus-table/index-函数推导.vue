@@ -82,7 +82,7 @@
 <script lang="ts">
 import { ref, onMounted, h, computed, useAttrs, defineComponent } from 'vue'
 import { ElTableColumn } from 'element-plus'
-import type { Dict, DictItem } from '@/types/table'
+import type { Dict, DictItem } from '@/components/cus-table/table'
 import { ColumnWidthMap } from './TableColumnWidthConfig'
 
 export default defineComponent({

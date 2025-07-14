@@ -2,7 +2,7 @@
   <CusTable
     :ElTableProps="ElTableProps"
     :dict="dict"
-    :searchMethod="searchMethod"
+    :searchMethod="$.list"
     :maxHeight="200"
     @selection-change="handleSelectionChange"
     :selectable="handleSelectionChangeSelectable"
@@ -18,10 +18,8 @@
 import { ref, h } from 'vue'
 import CusTable from '@/components/cus-table/index.vue'
 import { ElButton, ElInput } from 'element-plus'
-import type { Dict, DictItem } from '@/types/table'
+import type { Dict, DictItem } from '@/components/cus-table/table'
 import $ from '@/api/index'
-
-const searchMethod = $.list
 
 const handleSelectionChange = val => {
   console.log(`output->selectedList`, val)
@@ -44,19 +42,18 @@ const ElTableProps: any = {
   },
 }
 
-const dict = ref<Dict>([
+const dict = ref<DictItem[]>([
   {
     prop: 'class_id',
     label: '班级ID',
     search: () => h(ElInput, {}),
     show: false,
   },
-
   {
     prop: '',
     label: '班级信息',
     ElTableColumnProps: {
-      align: 'center',
+    align: 'center',
     },
     children: [
       {

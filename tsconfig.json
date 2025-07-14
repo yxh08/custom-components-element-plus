@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*.js", "src/**/*.vue", "src/**/*.ts"],
+  "include": ["src/**/*.js", "src/**/*.vue", "src/**/*.ts", "node_modules/element-plus/global.d.ts" ],
   "exclude": ["node_modules","dist"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */

@@ -52,19 +52,26 @@
           </el-popover>
         </div>
       </div>
+
+
       <el-table v-bind="{ ...__ElTableProps__ }" :data="tableData">
+        <!--    复选框    -->
         <el-table-column
           v-if="$attrs.onSelectionChange"
           type="selection"
           :selectable="$attrs.selectable ?? (() => true)"
           width="55"
         />
+
+        <!--    遍历渲染tableColumn    -->
         <template v-for="columnItem in tableColumns">
           <Component
             v-if="columnItem.raw.show"
             :is="columnItem.component"
           ></Component>
         </template>
+
+
       </el-table>
     </div>
 
@@ -88,7 +95,7 @@
 <script setup lang="ts">
 import { ref, onMounted, h, computed, useAttrs, defineComponent } from 'vue'
 import { ElTableColumn } from 'element-plus'
-import type { Dict, DictItem } from '@/types/table'
+import type { Dict, DictItem } from '@/components/cus-table/table'
 import { ColumnWidthMap } from './TableColumnWidthConfig'
 
 /**
