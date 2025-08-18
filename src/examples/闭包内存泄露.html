@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>闭包内存泄露</title>
+</head>
+<body>
+
+<button id="insert1">插入</button>
+<button id="clear1">清理闭包函数</button>
+<button id="clear2">清理闭包工厂函数</button>
+
+<script>
+
+  let createArrayAppender=()=>{
+    const arr = []
+    return function(num){
+      arr.push(num)
+    }
+  }
+
+  let appendToLargeArray = createArrayAppender()
+
+  const insert = () => {
+    console.log(1)
+    for(let i = 0;i<1e8;i++){
+      appendToLargeArray(i)
+    }
+  }
+
+  const clear = () =>{
+    appendToLargeArray = null
+  }
+
+  const clearfn = () =>{
+    createArrayAppender = null
+  }
+
+
+  insert1.addEventListener('click',insert)
+  clear1.addEventListener('click',clear)
+  clear2.addEventListener('click',clearfn)
+
+</script>
+
+</body>
+</html>

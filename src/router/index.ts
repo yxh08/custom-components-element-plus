@@ -1,10 +1,9 @@
-import { createWebHashHistory, createRouter, RouteRecordRaw } from 'vue-router'
-import { defineAsyncComponent } from 'vue'
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component:() => import('@/App.vue'),
+    component: () => import('@/App.vue'),
     redirect: '/index',
     children: [], // 可选，显式声明空数组避免类型错误
   },
@@ -24,6 +23,25 @@ const routes: RouteRecordRaw[] = [
     path: '/test',
     component: () => import('@/examples/test.vue'),
   },
+  {
+    path: '/asyncComponent',
+    component: () => import('@/examples/AsyncComponent.vue'),
+  },
+  {
+    path: '/bibaoniecunxielou',
+    component: () => import('@/examples/bibaoniecunxielou.vue'),
+  },
+  {
+    path: '/provide',
+    component: () => import('@/examples/playground/provide/provide.vue'),
+  },
+
+  {
+    path: '/withDirectives',
+    component: () => import('@/examples/playground/withDirectives/index.vue'),
+  },
+
+
 ]
 
 const router = createRouter({

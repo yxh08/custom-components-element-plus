@@ -23,7 +23,7 @@ export interface FormBuilderOptions {
     dialogProps?:any,
 }
 
-// // 优化：明确键值类型关联
+// 优化：明确键值类型关联
 interface ComponentMap<K extends string, V> {
     [key: K]: V;
 }

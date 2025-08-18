@@ -1,13 +1,13 @@
 <template>
   <div style="height: 100%; display: flex; flex-direction: column">
     <el-form
+      v-if="formItems.length"
       inline
       style="flex: 1; align-items: center"
-      v-if="formItems.length"
     >
       <el-form-item
-        :label="item.label"
         v-for="item in formItems"
+        :label="item.label"
         style="margin-top: 18px"
       >
         <Component
@@ -43,10 +43,10 @@
             </template>
             <div style="overflow: auto; height: 150px">
               <el-checkbox
-                :label="item.raw.label"
-                v-model="item.raw.show"
-                @change="checkShowChange($event, index)"
                 v-for="(item, index) in tableColumns"
+                v-model="item.raw.show"
+                :label="item.raw.label"
+                @change="checkShowChange($event, index)"
               />
             </div>
           </el-popover>
@@ -54,20 +54,20 @@
       </div>
 
 
-      <el-table v-bind="{ ...__ElTableProps__ }" :data="tableData">
+      <el-table :data="tableData" v-bind="{ ...__ElTableProps__ }" v-on="{'header-dragend':headerDragend}">
         <!--    复选框    -->
         <el-table-column
           v-if="$attrs.onSelectionChange"
-          type="selection"
           :selectable="$attrs.selectable ?? (() => true)"
+          type="selection"
           width="55"
         />
 
         <!--    遍历渲染tableColumn    -->
         <template v-for="columnItem in tableColumns">
           <Component
-            v-if="columnItem.raw.show"
             :is="columnItem.component"
+            v-if="columnItem.raw.show"
           ></Component>
         </template>
 
@@ -76,14 +76,14 @@
     </div>
 
     <el-pagination
-      style="margin: 10px 0 0 auto"
-      size="large"
-      :total="pageInfo.total_count"
-      :page-count="pageInfo.total_page"
-      :page-sizes="pageSizes"
       v-model:current-page="pageInfo.page"
       v-model:page-size="pageInfo.pagesize"
+      :page-count="pageInfo.total_page"
+      :page-sizes="pageSizes"
+      :total="pageInfo.total_count"
       layout="total, prev, pager, next,sizes"
+      size="large"
+      style="margin: 10px 0 0 auto"
       @size-change="searchMethod_({ pagesize: $event, page: pageInfo.page })"
       @current-change="
         searchMethod_({ page: $event, pagesize: pageInfo.pagesize })
@@ -92,8 +92,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { ref, onMounted, h, computed, useAttrs, defineComponent } from 'vue'
+<script lang="ts" setup>
+import { computed, h, onMounted, ref, useAttrs } from 'vue'
+import type { TableProps } from 'element-plus'
 import { ElTableColumn } from 'element-plus'
 import type { Dict, DictItem } from '@/components/cus-table/table'
 import { ColumnWidthMap } from './TableColumnWidthConfig'
@@ -119,7 +120,7 @@ const __ElTableProps__ = computed(() => ({ ...$attrs, ...props.ElTableProps }))
 
 const emits = defineEmits()
 
-const tableData = ref([])
+const tableData = ref([{}, {}, {}, {}])
 const pageInfo = ref<any>({
   total: 0,
   page: 1,
@@ -138,7 +139,10 @@ const searchMethod_ = async (info = { page: 1, pagesize: 20 }) => {
   pageInfo.value = res.data
 }
 
-const props = defineProps<{
+
+type TablePropsWithoutData<T> = Omit<TableProps<T>, 'data'>
+
+const props = defineProps<TablePropsWithoutData<any> & {
   dict: Dict
 
   /**
@@ -152,10 +156,16 @@ const props = defineProps<{
    * @description ElTable的属性
    */
   ElTableProps?: object
+
 }>()
 
 const formItems = ref<any>([])
 const tableColumns = ref<any>([])
+
+
+// ColumnWidthMap = {...TableColumnWidthConfig,...columnWidthMap}
+
+// const  ColumnWidthMap  = {...TableColumnWidthConfig,...columnWidthMap}
 
 onMounted(() => {
   tableColumns.value = props.dict?.map((x: DictItem) => ({
@@ -194,6 +204,7 @@ onMounted(() => {
   searchMethod_()
 })
 
+//table header的嵌套
 const setElTableColumnChildren = children => {
   if (!children) return
   return children.map(x => {
@@ -216,9 +227,20 @@ const setElTableColumnChildren = children => {
   })
 }
 
+
+//显示隐藏表格字段
 const checkShowChange = (val, index) => {
   tableColumns.value[index].raw.show = val
 }
+
+//table列宽度改变
+const columnWidthMap: Record<string, number> = {}
+
+const headerDragend = (newWidth, oldWidth, column) => {
+  columnWidthMap[column.label] = newWidth
+  console.log(columnWidthMap)
+}
+
 </script>
 
 <style></style>

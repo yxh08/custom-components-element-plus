@@ -2,23 +2,24 @@
   <CusTable
     :ElTableProps="ElTableProps"
     :dict="dict"
-    :searchMethod="$.list"
     :maxHeight="200"
+    :searchMethod="$.list"
+    @selectable="handleSelectionChangeSelectable"
     @selection-change="handleSelectionChange"
-    :selectable="handleSelectionChangeSelectable"
   >
     <template #operate>
       <el-button type="primary">新增</el-button>
       <el-button type="danger">删除</el-button>
     </template>
   </CusTable>
+
 </template>
 
-<script setup lang="ts">
-import { ref, h } from 'vue'
+<script lang="ts" setup>
+import { h, ref } from 'vue'
 import CusTable from '@/components/cus-table/index.vue'
 import { ElButton, ElInput } from 'element-plus'
-import type { Dict, DictItem } from '@/components/cus-table/table'
+import type { DictItem } from '@/components/cus-table/table'
 import $ from '@/api/index'
 
 const handleSelectionChange = val => {
@@ -53,7 +54,7 @@ const dict = ref<DictItem[]>([
     prop: '',
     label: '班级信息',
     ElTableColumnProps: {
-    align: 'center',
+      align: 'center',
     },
     children: [
       {

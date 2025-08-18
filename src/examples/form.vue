@@ -4,14 +4,20 @@
 
 
 <script setup lang="ts">
-import formBuilder from '@/components/formBuilder/index.vue'
-import { ref, h ,createApp,onMounted} from 'vue'
-import { ElOption, ElSelect,ElMessageBox as $messageBox } from 'element-plus'
+import { ref, h ,watch} from 'vue'
+import { ElOption, ElSelect,ElMessage as $message } from 'element-plus'
 import useForm  from '@/components/formBuilder/useForm'
 
 
 // 表单数据
-const formData = ref<Record<string, any>>({})
+const formData = ref<Record<string, any>>({
+  username:'test',
+  age:18,
+})
+
+watch(()=>formData,(val)=>{
+  console.log(val.username)
+})
 
 const formItems = [
   {
@@ -23,9 +29,8 @@ const formItems = [
     slots:{
       prepend:()=>h('div','test')
     },
-    props:{
-      onChange:(e)=>{
-        console.log(e)}
+    props: {
+      onChange: () => {}
     }
   },
   {
@@ -51,13 +56,16 @@ function openForm (){
     formData:formData.value,
     dialogProps:{
       title:'表单',
+      width:'500px',
       draggable:true,
-      beforeClose:()=>{
-        console.log('beforeClose')
-      }
     }
   }).then(res=>{
     console.log('res', res)
+    setTimeout(()=>{
+      res.switchSubmitLoading(false)
+      // res.dialog_ref.handleClose ()
+    },2000)
+    // $message.success()
   }).catch(err=>{
     console.log('err', err)
   })
@@ -65,4 +73,7 @@ function openForm (){
 
 
 </script>
-<style scoped></style>
+<style scoped>
+
+
+</style>
