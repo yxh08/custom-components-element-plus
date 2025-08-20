@@ -1,16 +1,29 @@
-### new的过程
+<template>
+  <div>{{ count }}</div>
+</template>
 
-    1.创建一个空对象
-    2.将这个对象的__propo__指向构造函数的prototype1
-    3.构造函数的this指向新对象
-    4.添加属性(执行构造函数的代码)
-    5.如果构造函数返回非空对象则返回改对象,否则返回新对象
+<script lang="ts" setup>
+import { ref } from 'vue'
 
-### 异步数据竞态
+const count = ref<any>(0)
 
-```js
-// path:/createCancelTask
-// file:src/examples/playground/createCancelTask/index.vue
+/**
+ * @description 创建一个取消任务
+ *  连续发送多个请求时,只取最后一次请求结果
+ * @param data 模拟的请求结果
+ * @param delay 模拟的请求延迟时间
+ */
+
+// 模拟的请求
+async function request(data: number, delay = 2000): Promise<number> {
+  return await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(data)
+    }, delay)
+  })
+}
+
+
 //创建一个可以取消上一个请求的任务
 const createCancelTask = (asyncTask: (...args: any) => Promise<any>) => {
   let cancel = () => {
@@ -34,10 +47,22 @@ const createCancelTask = (asyncTask: (...args: any) => Promise<any>) => {
     })
   }
 }
-```
 
-### 多任务
 
-### nextTick
+const fn = createCancelTask(request)
 
-1.nextTick是dom更新后执行,**并不是页面渲染后**执行,浏览器渲染页面的时机是dom更新后.
+fn(1, 1500).then(res => {
+  count.value = res
+
+})
+
+fn(2, 2500).then(res => {
+  count.value = res
+  console.dir(fn)
+})
+
+
+</script>
+<style scoped>
+
+</style>

@@ -40,6 +40,18 @@ const routes: RouteRecordRaw[] = [
     path: '/withDirectives',
     component: () => import('@/examples/playground/withDirectives/index.vue'),
   },
+  {
+    path: '/createCancelTask',
+    component: () => import('@/examples/playground/createCancelTask/index.vue'),
+  },
+  {
+    path: '/nextTick',
+    component: () => import('@/examples/playground/nextTick/index.vue'),
+  },
+  {
+    path: '/taskScheduler',
+    component: () => import('@/examples/playground/taskScheduler/index.vue'),
+  },
 
 
 ]

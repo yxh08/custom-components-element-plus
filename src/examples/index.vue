@@ -7,6 +7,9 @@
     <RouterLink to="/provide">provide</RouterLink>
     <RouterLink to="/bibaoniecunxielou">闭包内存泄露</RouterLink>
     <RouterLink to="/withDirectives">withDirectives</RouterLink>
+    <RouterLink to="/createCancelTask">异步数据静态</RouterLink>
+    <RouterLink to="/nextTick">nextTick</RouterLink>
+    <RouterLink to="/taskScheduler">任务调度器taskScheduler</RouterLink>
 
   </div>
 </template>
