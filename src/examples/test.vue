@@ -1,36 +1,26 @@
-<template>
-
-  <div class="test">测试测试测试测试测试测一二三四</div>
-</template>
+<template></template>
 
 <script lang="ts" setup>
+import { ref, computed } from 'vue'
+function useCounter() {
+  const count = ref(0)
+  const double = computed(() => count.value * 2)
+  function increment() {
+    count.value++
+  }
+  return { double, increment }
+}
 
-
-// //debounce
-// function debounce(fn, delay = 5000){
-//   let timer
-//   return function(...args){
-//     timer && clearTimeout(timer)
-//     timer = setTimeout(() => {
-//       fn.apply(this, args)
-//     }, delay)
-//   }
-// }
-
-
-// async function foo(){
-//   console.log(1)
-//  Promise.reject(2)
-// }
-// foo().catch(err=>{
-//   console.log('err', err)
-// })
-
-
+const { double, increment } = useCounter()
+increment()
+increment()
+increment()
+increment()
+increment()
+console.log(double.value)
 </script>
 
 <style>
-
 .test {
   height: 50px;
   width: 50px;

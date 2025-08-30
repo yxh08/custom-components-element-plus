@@ -7,10 +7,13 @@
     "dev": "vite",
     "devc": "vite -- --force",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "ts": "ts-node",
+    "tsx": "tsx"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@vueuse/core": "^13.7.0",
     "axios": "^1.9.0",
     "element-plus": "^2.9.10",
     "pinia": "^3.0.3",
@@ -22,6 +25,8 @@
     "@types/node": "^20.11.24",
     "@vitejs/plugin-vue": "^5.2.3",
     "@vue/tsconfig": "^0.5.1",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.5",
     "vite": "^6.2.4",
     "vite-plugin-vue-devtools": "^7.7.2"
   }

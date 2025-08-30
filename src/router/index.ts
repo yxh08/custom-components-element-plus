@@ -52,6 +52,26 @@ const routes: RouteRecordRaw[] = [
     path: '/taskScheduler',
     component: () => import('@/examples/playground/taskScheduler/index.vue'),
   },
+  {
+    path: '/maxLongNumberList',
+    component: () => import('@/examples/playground/maxLongNumberList/index.vue'),
+  },
+  {
+    path: '/IpadUa',
+    component: () => import('@/examples/IpadUa.vue'),
+  },
+  {
+    path: '/useTextareaAutosize',
+    component: () => import('@/examples/playground/useTextareaAutosize/index.vue'),
+  },
+  {
+    path: '/CustomComponent',
+    component: () => import('@/examples/playground/CustomComponent/index.vue'),
+  },
+  {
+    path: '/test',
+    component: () => import('@/examples/test.vue'),
+  },
 
 
 ]

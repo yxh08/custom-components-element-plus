@@ -12,7 +12,6 @@
       <el-button type="danger">删除</el-button>
     </template>
   </CusTable>
-
 </template>
 
 <script lang="ts" setup>

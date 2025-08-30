@@ -1,0 +1,181 @@
+{
+  "main": {
+    "id": "3240fda4cedd10a1",
+    "type": "split",
+    "children": [
+      {
+        "id": "2d16da817746a2da",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "c9aceaa6e7750227",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/最长递增字序列.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "最长递增字序列"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e3d506ae263a073b",
+    "type": "split",
+    "children": [
+      {
+        "id": "465ef13873f49b35",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ca1f90872fe3ae1c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "676e2ca1545a1bc5",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "235af85eb7a539ee",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "right": {
+    "id": "e767bbb4c1928fb6",
+    "type": "split",
+    "children": [
+      {
+        "id": "59b7fe26b7500d7a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "775599c05149d34b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Excalidraw/最长递增字序列.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "最长递增字序列 的反向链接列表"
+            }
+          },
+          {
+            "id": "25dcd975abeed318",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Excalidraw/最长递增字序列.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "最长递增字序列 的出链列表"
+            }
+          },
+          {
+            "id": "123c8415ab80b4c4",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "8f3601e78dae6f3f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Excalidraw/最长递增字序列.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "最长递增字序列 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false
+    }
+  },
+  "active": "c9aceaa6e7750227",
+  "lastOpenFiles": [
+    "Excalidraw/最长递增字序列.canvas",
+    "Excalidraw/最长递增字序列.md",
+    "Excalidraw/最长递增字序列.md",
+    "欢迎.md",
+    "未命名",
+    "Excalidraw/Drawing 2025-08-21 09.39.13.excalidraw.md",
+    "Excalidraw"
+  ]
+}

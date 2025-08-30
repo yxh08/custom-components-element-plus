@@ -53,8 +53,11 @@
         </div>
       </div>
 
-
-      <el-table :data="tableData" v-bind="{ ...__ElTableProps__ }" v-on="{'header-dragend':headerDragend}">
+      <el-table
+        :data="tableData"
+        v-bind="{ ...__ElTableProps__ }"
+        v-on="{ 'header-dragend': headerDragend }"
+      >
         <!--    复选框    -->
         <el-table-column
           v-if="$attrs.onSelectionChange"
@@ -70,8 +73,6 @@
             v-if="columnItem.raw.show"
           ></Component>
         </template>
-
-
       </el-table>
     </div>
 
@@ -93,8 +94,8 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, h, onMounted, ref, useAttrs } from 'vue'
-import type { TableProps } from 'element-plus'
+import { ComponentInstance, computed, h, onMounted, ref, useAttrs } from 'vue'
+import type { TableProps, ElInput } from 'element-plus'
 import { ElTableColumn } from 'element-plus'
 import type { Dict, DictItem } from '@/components/cus-table/table'
 import { ColumnWidthMap } from './TableColumnWidthConfig'
@@ -118,7 +119,7 @@ const __ElTableProps__ = computed(() => ({ ...$attrs, ...props.ElTableProps }))
  *
  */
 
-const emits = defineEmits()
+// const emits = defineEmits()
 
 const tableData = ref([{}, {}, {}, {}])
 const pageInfo = ref<any>({
@@ -139,29 +140,28 @@ const searchMethod_ = async (info = { page: 1, pagesize: 20 }) => {
   pageInfo.value = res.data
 }
 
-
 type TablePropsWithoutData<T> = Omit<TableProps<T>, 'data'>
 
-const props = defineProps<TablePropsWithoutData<any> & {
-  dict: Dict
+const props = defineProps<
+  TablePropsWithoutData<any> & {
+    dict: Dict
 
-  /**
-   * @param searchMethod
-   * @description 搜索和下载数据用的函数
-   */
-  searchMethod: (isDownload?: boolean) => any
+    /**
+     * @param searchMethod
+     * @description 搜索和下载数据用的函数
+     */
+    searchMethod: (isDownload?: boolean) => any
 
-  /**
-   * @param ElTableProps
-   * @description ElTable的属性
-   */
-  ElTableProps?: object
-
-}>()
+    /**
+     * @param ElTableProps
+     * @description ElTable的属性
+     */
+    ElTableProps?: object
+  }
+>()
 
 const formItems = ref<any>([])
 const tableColumns = ref<any>([])
-
 
 // ColumnWidthMap = {...TableColumnWidthConfig,...columnWidthMap}
 
@@ -227,7 +227,6 @@ const setElTableColumnChildren = children => {
   })
 }
 
-
 //显示隐藏表格字段
 const checkShowChange = (val, index) => {
   tableColumns.value[index].raw.show = val
@@ -241,6 +240,7 @@ const headerDragend = (newWidth, oldWidth, column) => {
   console.log(columnWidthMap)
 }
 
+defineExpose({} as ComponentInstance<typeof ElInput>)
 </script>
 
 <style></style>
